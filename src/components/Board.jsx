@@ -2,13 +2,26 @@ import React, { useState } from "react";
 import Square from "./Square";
 
 const Board = () => {
+  //change turns
+  const [xIsNext, setxIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null)); //[null, null, null, null, null, null, null, null, null]
 
   const handleClick = (i) => {
+    //if square is already filled, return early
+    if (squares[i]) {
+      return;
+    }
     //get a copy of the squares array
     const nextSquares = squares.slice();
-    nextSquares[i] = "X";
+
+    //check turn
+    if (xIsNext) {
+      nextSquares[i] = "X";
+    } else {
+      nextSquares[i] = "O";
+    }
     setSquares(nextSquares);
+    setxIsNext(!xIsNext);
   };
 
   return (
