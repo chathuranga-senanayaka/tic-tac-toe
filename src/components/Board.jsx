@@ -37,8 +37,10 @@ const Board = () => {
   }
 
   return (
-    <div className="flex flex-col gap-3 p-6 bg-white rounded-2xl shadow-lg border border-gray-300">
-      <div className="status">{status}</div>
+    <div className="flex flex-col items-center gap-3 p-6 bg-white rounded-2xl shadow-lg border border-gray-300">
+      <div className="status text-xl font-semibold text-gray-700 mb-4 text-center">
+        {status}
+      </div>
       <div className="board-row flex gap-3">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
