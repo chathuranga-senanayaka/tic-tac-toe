@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Square from "./Square";
+import { calculateWinner } from "../helper/calculateWinner.js";
 
 const Board = () => {
   //change turns
@@ -8,7 +9,8 @@ const Board = () => {
 
   const handleClick = (i) => {
     //if square is already filled, return early
-    if (squares[i]) {
+    //or check already has a winner
+    if (squares[i] || calculateWinner(squares)) {
       return;
     }
     //get a copy of the squares array
@@ -24,8 +26,19 @@ const Board = () => {
     setxIsNext(!xIsNext);
   };
 
+  //check winner
+  const winner = calculateWinner(squares);
+  let status;
+  //tell winner if winner already exists or tell next player
+  if (winner) {
+    status = "Winner: " + winner;
+  } else {
+    status = "Next player: " + (xIsNext ? "X" : "O");
+  }
+
   return (
     <div className="flex flex-col gap-3 p-6 bg-white rounded-2xl shadow-lg border border-gray-300">
+      <div className="status">{status}</div>
       <div className="board-row flex gap-3">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
