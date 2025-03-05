@@ -7,14 +7,19 @@ const Game = () => {
 
   const currentSquares = history[history.length - 1];
 
-  const handlePlay = () => {};
+  const handlePlay = (nextSquares) => {
+    setHistory([...history, nextSquares]);
+    setXIsNext(!xIsNext);
+  };
 
   return (
     <div>
       <div className="game-board">
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
-      <div className="game-info"></div>
+      <div className="game-info">
+        <ol>{/*TODO*/}</ol>
+      </div>
     </div>
   );
 };
