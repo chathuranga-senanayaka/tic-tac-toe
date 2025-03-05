@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import Square from "./Square";
 import { calculateWinner } from "../helper/calculateWinner.js";
 
-const Board = () => {
+const Board = ({ xIsNext, squares, onPlay }) => {
   //change turns
-  const [xIsNext, setxIsNext] = useState(true);
-  const [squares, setSquares] = useState(Array(9).fill(null)); //[null, null, null, null, null, null, null, null, null]
 
   const handleClick = (i) => {
     //if square is already filled, return early
